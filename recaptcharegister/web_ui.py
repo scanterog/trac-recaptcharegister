@@ -19,7 +19,7 @@ class RecaptchaRegistrationModule(Component):
         doc='The private key given to you from the reCAPTCHA site')
     theme = Option('recaptcha', 'theme', default='white',
         doc='Can be red, white (default), blackglass, clean or custom. '
-            'Please see http://wiki.recaptcha.net/index.php/Theme')
+            'Please see https://wiki.recaptcha.net/index.php/Theme')
     lang = Option('recaptcha', 'lang', default='en',
         doc='reCAPTCHA language; one of "en", "nl", "fr", "de", "pt", "ru", '
             '"es" and "tr"')
@@ -60,7 +60,7 @@ var RecaptchaOptions = {
                 api_html = tag.div(
                     tag.a("Generate a reCAPTCHA API key for this Trac "
                           "instance domain.", target="_blank",
-                          href="http://recaptcha.net/api/getkey?domain=%s&"
+                          href="https://recaptcha.net/api/getkey?domain=%s&"
                             "app=TracRecaptchaRegister" %
                             req.environ.get('SERVER_NAME')
                     )

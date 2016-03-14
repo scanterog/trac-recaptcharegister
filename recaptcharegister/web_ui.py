@@ -7,7 +7,7 @@ from trac.core import Component, implements, TracError
 from trac.web.api import ITemplateStreamFilter
 from trac.web.chrome import add_warning
 from trac.web.main import IRequestFilter
-from trac.config import Option
+from trac.config import Option, BoolOption
 
 
 class RecaptchaRegistrationModule(Component):
@@ -17,6 +17,8 @@ class RecaptchaRegistrationModule(Component):
         doc='The public key given to you from the reCAPTCHA site')
     private_key = Option('recaptcha', 'private_key',
         doc='The private key given to you from the reCAPTCHA site')
+    use_ssl = BoolOption('recaptcha', 'use_ssl', default='false', 
+        doc='Use SSL for recaptcha form and images')
     theme = Option('recaptcha', 'theme', default='white',
         doc='Can be red, white (default), blackglass, clean or custom. '
             'Please see https://wiki.recaptcha.net/index.php/Theme')
@@ -38,7 +40,7 @@ var RecaptchaOptions = {
   lang: "%s"
 }""" % (self.theme, self.lang), type='text/javascript')
             captcha_js = captcha.displayhtml(
-                self.public_key, use_ssl=req.scheme=='https',
+                self.public_key, use_ssl=True,
                 error='reCAPTCHA incorrect. Please try again.'
             )
             # First Fieldset of the registration form XPath match
